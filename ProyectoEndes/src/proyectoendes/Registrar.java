@@ -5,6 +5,8 @@
  */
 package proyectoendes;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pedro
@@ -209,6 +211,11 @@ public class Registrar extends javax.swing.JFrame {
         jLabel13.setText("(*) Campos obligatorios");
 
         jButton3.setText("insertar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -418,6 +425,29 @@ public class Registrar extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        String mensaje = "";
+        if (jTextField3.getText().length() < 1 ){
+            mensaje += "El login es obligatorio\n";
+        }
+        else if(jTextField4.getText().length() < 1){
+                mensaje += "La contraseña es obligatorio\n";
+                }
+        else if(jTextField6.getText().length() < 1){
+                mensaje += "El nombre es obligatoria\n";
+                }
+         else if (jTextField3.getText().length() < 6 && jTextField4.getText().length() < 6) {
+            mensaje += "En el login ha introducido menos de 6 caracteres\n";
+            mensaje += "En la contraseña ha introducido menos de 6 caracteres\n";
+        } else if (jTextField3.getText().length() < 6) {
+            mensaje += "En el login ha introducido menos de 6 caracteres\n";
+        } else if (jTextField4.getText().length() < 6) {
+            mensaje += "En la contraseña ha introducido menos de 6 caracteres\n";
+        }
+
+        JOptionPane.showMessageDialog(null, mensaje);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
