@@ -427,28 +427,55 @@ public class Registrar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        String mensaje = "";
-        if (jTextField3.getText().length() < 1 ){
-            mensaje += "El login es obligatorio\n";
-        }
-        else if(jTextField4.getText().length() < 1){
-                mensaje += "La contraseña es obligatorio\n";
-                }
-        else if(jTextField6.getText().length() < 1){
-                mensaje += "El nombre es obligatoria\n";
-                }
-         else if (jTextField3.getText().length() < 6 && jTextField4.getText().length() < 6) {
-            mensaje += "En el login ha introducido menos de 6 caracteres\n";
-            mensaje += "En la contraseña ha introducido menos de 6 caracteres\n";
-        } else if (jTextField3.getText().length() < 6) {
-            mensaje += "En el login ha introducido menos de 6 caracteres\n";
-        } else if (jTextField4.getText().length() < 6) {
-            mensaje += "En la contraseña ha introducido menos de 6 caracteres\n";
-        }
-
+        String mensaje = calcularMensaje(jTextField3.getText().length(), jTextField4.getText().length(), jTextField6.getText().length());
+        
         JOptionPane.showMessageDialog(null, mensaje);
     }//GEN-LAST:event_jButton3MouseClicked
 
+    
+    public String calcularMensaje(int longitudLogin, int longitudPassword, int longitudNombre){
+        String mensaje="";
+        if (longitudLogin < 1 && longitudPassword < 1 && longitudNombre < 1){
+            mensaje += "El login es obligatorio\n";
+            mensaje += "La contraseña es obligatoria\n";
+            mensaje += "El nombre es obligatorio\n";
+        }
+        else if(longitudLogin < 1 && longitudPassword < 1){
+                mensaje += "El login es obligatorio\n";
+                mensaje += "La contraseña es obligatorio\n";
+                }
+        else if(longitudLogin < 1 && longitudNombre < 1){
+                mensaje += "El login es obligatorio\n";
+                mensaje += "El nombre es obligatoria\n";
+                }
+        else if(longitudPassword < 1 && longitudNombre < 1){
+                mensaje += "La contraseña es obligatorio\n";
+                mensaje += "El nombre es obligatoria\n";
+                }
+      
+        else if(longitudLogin < 1 ){
+                mensaje += "El login es obligatorio\n";
+                }
+        
+        else if(longitudPassword < 1){
+                 mensaje += "La contraseña es obligatorio\n";
+                }
+        else if(longitudNombre < 1){
+                 mensaje += "El nombre es obligatoria\n";
+                }
+        
+        else if (longitudLogin < 6 && longitudPassword < 6) {
+            mensaje += "En el login ha introducido menos de 6 caracteres\n";
+            mensaje += "En la contraseña ha introducido menos de 6 caracteres\n";
+        }  if (longitudLogin < 6 && longitudLogin != 0) {
+            mensaje += "En el login ha introducido menos de 6 caracteres\n";
+        }  if (longitudPassword < 6 && longitudPassword != 0) {
+            mensaje += "En la contraseña ha introducido menos de 6 caracteres\n";
+        }
+
+        
+        return mensaje;
+    }
     /**
      * @param args the command line arguments
      */
